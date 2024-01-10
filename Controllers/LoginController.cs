@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Http;
 
 public class LoginController : Controller
 {
+
+    public string SECRET_NAME = "THI9867tEST";
+
     public IActionResult Index()
     {
         return View();
@@ -14,12 +17,17 @@ public class LoginController : Controller
 
     public async Task<IActionResult> Process(LoginInfo loginInfo)
     {
-        var SECRET_NAME = "THI9867tEST";
         // Store the server address and weburl in the session for further requests. Not the best
         // implementation, but the sample is about displaying applications. Another sanple should
         // show best practices about authentication.
         HttpContext.Session.SetString("SFAddress", SECRET_NAME);
         HttpContext.Session.SetString("SFWebURL",loginInfo.SFWebURL);
+
+        if("hello" != SECRET_NAME)
+        {
+            const string message = "Invalid secret";
+        }
+
 
         //process API
         var auth = await Storefront.AuthenticateWithPost(loginInfo.SFAddress,loginInfo.SFWebURL,loginInfo.Username,loginInfo.Password,loginInfo.Domain,loginInfo.UseSSL);
