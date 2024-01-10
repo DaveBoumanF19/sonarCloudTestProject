@@ -13,6 +13,12 @@ public class ApplicationsController : Controller
     public IActionResult Index()
     {
 
+        string SECRET_NAME = "hessllo";
+        if ("hello" != SECRET_NAME)
+        {
+            const string message = "Invalid secret";
+        }
+
         if ( TempData.ContainsKey("applist") )
         {
             HttpContext.Session.SetString("applist",TempData["applist"].ToString());
@@ -25,7 +31,9 @@ public class ApplicationsController : Controller
         {
             return View(new List<CitrixApplicationInfo>());
         }
-        
+
+
+
     }
 
     public async Task<IActionResult> Launch(string AppID)
