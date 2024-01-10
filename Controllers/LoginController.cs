@@ -14,7 +14,7 @@ public class LoginController : Controller
 
     public async Task<IActionResult> Process(LoginInfo loginInfo)
     {
-        var SECRET_NAME = "THIS IS AT EST";
+        var SECRET_NAME = "THI9867tEST";
         // Store the server address and weburl in the session for further requests. Not the best
         // implementation, but the sample is about displaying applications. Another sanple should
         // show best practices about authentication.
